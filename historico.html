@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histórico de Cotações</title>
+  <link rel="stylesheet" href="css.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <main role="main" class="container" aria-labelledby="titulo">
+    <h1 id="titulo" tabindex="0">Histórico de Cotações</h1>
+
+    <section aria-label="Tabela de histórico de cotações">
+      <table id="tabelaHistorico">
+        <caption class="sr-only">Tabela com histórico detalhado de cotações do produto selecionado</caption>
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Moeda</th>
+            <th scope="col">Câmbio do Dia</th>
+            <th scope="col">Preço Unitário</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Total (BRL)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="botoes" aria-label="Análise de dados da cotação" style="margin: 30px 0; text-align: center;">
+      <button id="btnMedia" aria-label="Calcular a média dos preços unitários">Média de Preço</button>
+      <button id="btnMaiorMenor" aria-label="Exibir maior e menor preço unitário">Maior/Menor Preço</button>
+      <button id="btnGrafico" aria-label="Exibir gráfico com o total das cotações em reais">Análise Gráfica</button>
+      <button id="btnVoltar" aria-label="Voltar à tela principal">Voltar</button>
+    </section>
+
+    <section id="analise" aria-live="polite" style="text-align: center; margin-top: 15px;"></section>
+
+    <section id="grafico" aria-label="Gráfico de análise visual" style="max-width: 800px; margin: 0 auto; padding-top: 20px;"></section>
+  </main>
+
+  <script src="historico.js"></script>
+</body>
+</html>

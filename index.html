@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastros de Produtos</title>
+  <link rel="stylesheet" href="css.css" />
+  <script defer src="script.js"></script>
+  <style>
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      font-weight: bold;
+      color: #004477;
+      margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .actions {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .actions button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      background-color: #005c99;
+      color: white;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background-color: #004477;
+    }
+    #conversao {
+      grid-column: span 2;
+      font-size: 0.9rem;
+      color: #007bff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    thead {
+      background-color: #004477;
+      color: white;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="logout" style="float: right; margin: 10px;">Sair</button>
+    <h1 style="text-align: center; color: #004477;">Cadastros de produtos</h1>
+
+    <div class="form-grid" role="form" aria-labelledby="tituloFormulario">
+      <div class="form-group">
+        <label for="nome">Nome do Produto</label>
+        <input id="nome" type="text" placeholder="Ex: Parafuso 1/4" aria-describedby="nomeAjuda" />
+        <small id="nomeAjuda">Insira um nome único para o produto</small>
+      </div>
+      <div class="form-group">
+        <label for="quantidade">Quantidade</label>
+        <input id="quantidade" type="number" placeholder="Ex: 10" aria-describedby="qtdAjuda" />
+        <small id="qtdAjuda">Número total de unidades</small>
+      </div>
+      <div class="form-group">
+        <label for="moeda">Moeda</label>
+        <select id="moeda" aria-label="Selecione a moeda">
+          <option value="BRL">R$ - Real</option>
+          <option value="USD">US$ - Dólar</option>
+          <option value="EUR">€ - Euro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="preco">Preço</label>
+        <input id="preco" type="text" placeholder="Ex: 12,50" aria-describedby="precoAjuda" />
+        <small id="precoAjuda">Preço unitário do produto</small>
+      </div>
+      <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <input id="categoria" type="text" placeholder="Ex: Fixadores" aria-describedby="categoriaAjuda" />
+        <small id="categoriaAjuda">Categoria ou tipo de produto</small>
+      </div>
+      <p id="conversao" aria-live="polite"></p>
+    </div>
+
+    <div class="actions" role="group" aria-label="Botões de ação">
+      <button id="btnCadastrar" aria-label="Cadastrar produto">Cadastrar</button>
+      <button id="btnExcluir" aria-label="Excluir produto">Excluir</button>
+      <button id="btnEditar" aria-label="Editar produto">Editar</button>
+      <button id="btnVerHistorico" aria-label="Ver histórico de cotações">Histórico de Cotações</button>
+    </div>
+
+    <table aria-label="Tabela de produtos cadastrados">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nome</th>
+          <th scope="col">Quant.</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-body"></tbody>
+    </table>
+  </div>
+</body>
+</html>

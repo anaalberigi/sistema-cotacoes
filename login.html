@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css.css" />
+  <style>
+    body {
+      background-color: #f4f6f8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .login-container h1 {
+      color: #004477;
+      margin-bottom: 10px;
+    }
+
+    .login-container p {
+      font-size: 0.95rem;
+      margin: 8px 0 20px;
+      color: #333;
+    }
+
+    .login-container label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .login-container button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #005c99;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-container button:hover {
+      background-color: #004477;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="login-container" aria-labelledby="tituloLogin">
+      <h1 id="tituloLogin">Brasil</h1>
+      <p>Bem-vindo ao sistema de cotações.</p>
+      <p>Acesso restrito aos colaboradores autorizados.</p>
+
+      <form onsubmit="return login(event)" role="form" aria-describedby="descricaoLogin">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" autocomplete="username" aria-required="true" aria-label="Campo para inserir nome de usuário" />
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" autocomplete="current-password" aria-required="true" aria-label="Campo para inserir senha do usuário" />
+
+        <button type="submit" aria-label="Entrar no sistema">Entrar</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function login(e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const permitidos = [
+        { user: "admin", pass: "102030" },
+        { user: "ana", pass: "senha" }
+      ];
+
+      const autorizado = permitidos.some(u => u.user === usuario && u.pass === senha);
+      if (autorizado) {
+        const tempoExpiracao = Date.now() + 1 * 60 * 1000; // 1 minutos
+        localStorage.setItem("usuarioLogado", usuario);
+        localStorage.setItem("loginExpiraEm", tempoExpiracao);
+        window.location.href = "index.html";
+      } else {
+        alert("Usuário ou senha inválidos.");
+      }
+    }
+  </script>
+</body>
+</html>
